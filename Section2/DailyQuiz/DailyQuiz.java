@@ -4,7 +4,9 @@ import java.util.HashMap;
 
 public class DailyQuiz {
     public static void main(String[] args) {
-        System.out.println(powerOfTwo(16));
+//        System.out.println(powerOfTwo(16));
+//        System.out.println(firstCharacter("Abcd Cdef Good job hello"));
+
     }
     public HashMap<String, String> transformFirstAndLast(String[] arr) {
         // TODO: arr[0] = key , arr[arrlength-1] = value
@@ -40,4 +42,14 @@ public class DailyQuiz {
         }
         return x == num;
     }
+    public String firstCharacter(String str) {
+        // TODO:
+        if(str.isEmpty()) return "";
+        String[] arr = str.split(" ");
+        StringBuilder result = new StringBuilder();
+        for (String s : arr) result.append(s.charAt(0));
+        return result.toString();
+    }
+
+
 }
