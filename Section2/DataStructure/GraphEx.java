@@ -43,7 +43,7 @@ public class GraphEx {
 class GraphadjacencyList{
     private ArrayList<ArrayList<Integer>> graph;
 
-    public Solution() {
+    public GraphadjacencyList() {
         graph = new ArrayList<>();
     }
 
