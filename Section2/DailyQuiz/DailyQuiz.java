@@ -1,11 +1,15 @@
 package CodeStates.Section2.DailyQuiz;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class DailyQuiz {
     public static void main(String[] args) {
-//        System.out.println(powerOfTwo(16));
-//        System.out.println(firstCharacter("Abcd Cdef Good job hello"));
+
+        DailyQuiz d = new DailyQuiz();
+        System.out.println(d.letterCapitalize("nEVER  gIVE uP"));
+
+
 
     }
     public HashMap<String, String> transformFirstAndLast(String[] arr) {
@@ -45,10 +49,37 @@ public class DailyQuiz {
     public String firstCharacter(String str) {
         // TODO:
         if(str.isEmpty()) return "";
-        String[] arr = str.split(" ");
+        String[] arr = str.split(" +");
         StringBuilder result = new StringBuilder();
         for (String s : arr) result.append(s.charAt(0));
         return result.toString();
+    }
+    public String firstReverse(String str) {
+        // TODO:
+        if(str.isEmpty()) return "";
+        StringBuilder sb = new StringBuilder(str);
+        return sb.reverse().toString();
+    }
+
+    public String letterCapitalize(String str) {
+        if(str.isEmpty()) return "";
+        StringBuilder chStr = new StringBuilder();
+        String[] strArr = str.split(" ");
+        System.out.println(Arrays.toString(strArr));
+        for (int t=0; t<strArr.length; t++){
+            if(strArr[t].equals("")) {
+                chStr.append(" ");
+                continue;
+            }
+            chStr.append(String.valueOf(strArr[t].charAt(0)).toUpperCase());
+            for(int i=1; i<strArr[t].length(); i++){
+                chStr.append(strArr[t].charAt(i));
+            }
+            if (t!= (strArr.length-1)){
+                chStr.append(" ");
+            }
+        }
+        return chStr.toString();
     }
 
 

@@ -26,13 +26,6 @@ class BsTreeLink<Key,Value> {
 
         public void setData(Value data) { this.data = data; }
 
-        public Node<Key, Value> getLeft() { return left; }
-
-        public void setLeft(Node<Key, Value> left) { this.left = left; }
-
-        public Node<Key, Value> getRight() { return right; }
-
-        public void setRight(Node<Key, Value> right) { this.right = right; }
         // 해당 노드의 데이터를 출력한다.
         public void print(){ System.out.println(data); }
     }
