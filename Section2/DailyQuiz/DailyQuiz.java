@@ -7,7 +7,8 @@ public class DailyQuiz {
     public static void main(String[] args) {
 
         DailyQuiz d = new DailyQuiz();
-        System.out.println(d.letterCapitalize("nEVER  gIVE uP"));
+        String[][] strArr = new String[][]{{"",""}};
+        System.out.println(d.convertListToHashMap(strArr).toString());
 
 
 
@@ -81,6 +82,44 @@ public class DailyQuiz {
         }
         return chStr.toString();
     }
+    public HashMap<String, String> convertListToHashMap(String[][] arr) {
+        if(arr.length==0) return new HashMap<>();
+        HashMap<String,String> hashMap = new HashMap<>();
+        for (String[] s : arr) {
+            if(s.length != 0){
+                if (hashMap.containsKey(s[0])) continue;
+                hashMap.put(s[0], s[1]);
+            }
+        }
+        return hashMap;
+    }
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
