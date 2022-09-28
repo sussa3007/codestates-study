@@ -91,6 +91,19 @@ public class GreedyQuiz {
         }
         return coinCount;
     }
+    public int partTimeJob2(int k) {
+        int [] coin = new int[]{500,100,50,10,5,1};
+        if(k%coin[0]==0) return k/coin[0];
+        int change = k;
+        int coinCount =0;
+        for (int j : coin) {
+            while ((change - j) >= 0) {
+                change -= j;
+                coinCount++;
+            }
+        }
+        return coinCount;
+    }
 
 /*    N * N의 크기를 가진 보드판 위에서 게임을 하려고 합니다. 게임의 룰은 다음과 같습니다.
 
@@ -151,16 +164,23 @@ public class GreedyQuiz {
         }
         return count;
     }
-    public int ocean(int target, int[] type) {
-        int change = target;
-        int coinCount =0;
-        for (int j : type) {
-            if (change % j == 0) return coinCount + change / j;
-            else {
-                coinCount = coinCount + change / j;
-                change = change % j;
+/*    예를 들어 $50 을 훔칠 때 $10, $20, $50 이 있다면 다음과 같이 4 가지 방법으로 $50을 훔칠 수 있습니다.
+
+    $50 한 장을 훔친다
+    $20 두 장, $10 한 장을 훔친다
+    $20 한 장, $10 세 장을 훔친다
+    $10 다섯 장을 훔친다*/
+    public long ocean(int target, int[] type) {
+        long[] count = new long[target+1];
+        count[0] =1;
+        for(int i=0; i<type.length; i++){
+            for(int t=1; t<=target; t++){
+                if(type[i]<=t)
+                    count[t]+= count[t-type[i]];
             }
         }
-        return coinCount;
+        return count[target];
+
+
     }
 }

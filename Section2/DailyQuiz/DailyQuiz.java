@@ -8,8 +8,8 @@ public class DailyQuiz {
 
         DailyQuiz d = new DailyQuiz();
         String[][] strArr = new String[][]{{"",""}};
-        System.out.println(d.convertListToHashMap(strArr).toString());
-
+//        System.out.println(d.convertListToHashMap(strArr).toString());
+        System.out.println(d.ABCheck("lane Borrowed"));
 
 
     }
@@ -92,6 +92,23 @@ public class DailyQuiz {
             }
         }
         return hashMap;
+    }
+    public String convertDoubleSpaceToSingle(String str) {
+        return str.replaceAll("  "," ");
+    }
+    public boolean ABCheck(String str) {
+        String[] arr = str.split("");
+        int length = arr.length;
+        for(int i=0; i<length; i++){
+            if(arr[i].equalsIgnoreCase("a")&&(i+4)<length
+                    &&arr[i+4].equalsIgnoreCase("b")){
+                    return true;
+            }else if(arr[i].equalsIgnoreCase("b")&&(i+4)<length
+                    &&arr[i+4].equalsIgnoreCase("a")){
+                    return true;
+            }
+        }
+        return false;
     }
 
 
