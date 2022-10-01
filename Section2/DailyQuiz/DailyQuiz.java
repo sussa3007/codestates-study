@@ -1,27 +1,16 @@
 package CodeStates.Section2.DailyQuiz;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public class DailyQuiz {
-    public static void main(String[] args) {
 
-        DailyQuiz d = new DailyQuiz();
-        String[][] strArr = new String[][]{{"",""}};
-//        System.out.println(d.convertListToHashMap(strArr).toString());
-        System.out.println(d.ABCheck("lane Borrowed"));
-
-
-    }
     public HashMap<String, String> transformFirstAndLast(String[] arr) {
-        // TODO: arr[0] = key , arr[arrlength-1] = value
         if(arr.length==0)return null;
         HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put(arr[0],arr[arr.length-1]);
         return hashMap;
     }
     public int computeWhenDouble(double interestRate) {
-        // TODO:연이율을 입력받아 원금이 2배 이상이 될 때까지 걸리는 시간(년)을 리턴해야 합니다
         double value = 100;
         // 시작은 100으로 목표는 200이상
         int count = 0;
@@ -109,6 +98,54 @@ public class DailyQuiz {
             }
         }
         return false;
+    }
+    public String insertDash(String str) {
+        if(str.isEmpty()) return "";
+        StringBuilder sb = new StringBuilder();
+        sb.append(str.charAt(0));
+        for(int i=1; i<str.length(); i++){
+            if(str.charAt(i-1)%2!=0&&str.charAt(i)%2!=0){
+                sb.append("-").append(str.charAt(i));
+            }else sb.append(str.charAt(i));
+        }
+        return sb.toString();
+    }
+    public String[] removeExtremes(String[] arr) {
+        // TODO:
+        if(arr==null||arr.length==0) return null;
+        String maxStr=arr[0];
+        String minStr=arr[0];
+        LinkedList<String> strList = new LinkedList<>();
+        for (String s : arr) {
+            if (s==null||s.isEmpty()) return null;
+            if (s.length() >= maxStr.length()) maxStr = s;
+            if (s.length() <= minStr.length()) minStr = s;
+            strList.add(s);
+        }
+        strList.remove(maxStr);
+        strList.remove(minStr);
+        if(!strList.isEmpty()){
+            return Arrays.copyOf(strList.toArray(), strList.toArray().length,String[].class);
+        }else return new String[]{};
+    }
+
+    public int[] reverseArr(int[] arr){
+        if(arr.length==0) return new int[]{};
+        int[] cyclePre = Arrays.copyOfRange(arr,arr.length-1,arr.length);
+        int[] cycleLast =  reverseArr(Arrays.copyOfRange(arr,0,arr.length-1));
+        int[] combineArr = new int[cyclePre.length+cycleLast.length];
+        System.arraycopy(cyclePre,0,combineArr,0,cyclePre.length);
+        System.arraycopy(cycleLast,0,combineArr,cyclePre.length,cycleLast.length);
+        return combineArr;
+    }
+    public static void main(String[] args) {
+
+        DailyQuiz d = new DailyQuiz();
+//        {"a", "c", "the",null}
+        String [] result = new String []{"a", "c", "the","aaa"};
+        System.out.println(Arrays.toString(d.removeExtremes(result)));
+
+
     }
 
 
