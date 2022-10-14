@@ -1,20 +1,13 @@
 package CodeStates.Section2.DailyQuiz;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class DailyQuiz2 {
     public static void main(String[] args) {
-        String str = "ABC";
-        int num = 12;
-        System.out.println("ABC "+str+"12 "+12+" " +num );
-        System.out.printf("%d 숫자 %s 문자열 \n",num,str);
-        System.out.print(str + num + "\n");
-        System.out.println("끝");
-        int[] arr =new int[6];
-        for (int i=0; i< arr.length; i++){
-            arr[i] = (int) (Math.random()*45)+1;// 0.000001~0.9999999
-        }
-        System.out.println(Arrays.toString(arr));
+        DailyQuiz2 q = new DailyQuiz2();
+        System.out.println(q.compressString("abc"));
+//        System.out.println(q.compressString("wwwggoppopppp"));
 
 
     }
@@ -59,5 +52,72 @@ public class DailyQuiz2 {
             }
         }
         return true;
+    }
+    public int numberSearch(String str) {
+        if(str.isEmpty()) return 0;
+        String[] numStrarr = str.replaceAll("[^0-9]","").split("");
+        String charStr = str.replaceAll("[^a-zA-Z]","");
+        double strLength = charStr.length();
+        double sum = Arrays.stream(numStrarr).mapToInt(Integer::parseInt).sum();
+        return (int)Math.round(sum/strLength);
+    }
+
+    public String decryptCaesarCipher(String str, int secret) {
+        if(str.isEmpty()) return "";
+        char[] arr = str.toCharArray();
+        char[] arrAl = new char[26];
+        StringBuilder sb = new StringBuilder();
+
+        for(int i=0; i<26; i++){
+            arrAl[i] = (char) (i+97);
+        }
+        for(char c : arr){
+            if(c ==' ') {sb.append(" "); continue;}
+            for (int i=0; i< arrAl.length; i++){
+                if(c==arrAl[i]){
+                    if(i-secret>=0){
+                        sb.append(arrAl[i-secret]);
+                    } else {
+                        sb.append(arrAl[26+(i-secret)]);
+                    }
+                    break;
+                }
+            }
+        }
+        return sb.toString();
+    }
+
+    public String compressString(String str) {
+        if(str.isEmpty()) return "";
+        StringBuilder sb = new StringBuilder();
+        int count =0;
+        str = str + ' ';
+        for(int i=0; i<str.length()-1; i++){
+            if(str.charAt(i)==str.charAt(i+1)){
+                count++;
+                continue;
+            }
+            if(count>=2){
+                sb.append(count+1).append(str.charAt(i));
+                count = 0;
+            } else if (count==1) {
+                sb.append(str.charAt(i)).append(str.charAt(i));
+                count=0;
+            } else {
+                if(str.charAt(i)!=str.charAt(i+1)) sb.append(str.charAt(i));
+            }
+        }
+        return sb.toString().trim();
+    }
+    public int largestProductOfThree(int[] arr) {
+        int[] comp = Arrays.stream(arr).sorted().toArray();
+        int maxMulti = 0;
+        int minMulti = 0;
+        // 최대값 3개를 곱한값
+        maxMulti = comp[comp.length - 1] * comp[comp.length - 2] * comp[comp.length - 3];
+        // 음수 최소값 2개 양수 최대값 1개 곱한값
+        minMulti = comp[0] * comp[1] * comp[comp.length - 1];
+
+        return Math.max(maxMulti, minMulti);
     }
 }
