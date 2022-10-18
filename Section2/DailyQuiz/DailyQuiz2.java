@@ -6,8 +6,8 @@ import java.util.Collections;
 public class DailyQuiz2 {
     public static void main(String[] args) {
         DailyQuiz2 q = new DailyQuiz2();
-        System.out.println(q.compressString("abc"));
-//        System.out.println(q.compressString("wwwggoppopppp"));
+        int[] a= new int[]{1,4,7,6,2,5,3};
+        System.out.println(Arrays.toString(q.bubbleSort(a)));
 
 
     }
@@ -119,5 +119,28 @@ public class DailyQuiz2 {
         minMulti = comp[0] * comp[1] * comp[comp.length - 1];
 
         return Math.max(maxMulti, minMulti);
+    }
+
+    public int[] bubbleSort(int[] arr) {
+        int[] result = arr.clone();
+        int count=0;
+        for (int i = result.length-1; i >=0 ; i--) {
+            for(int t=1; t<=i; t++){
+                if(result[t-1]>result[t]){
+                    swap(t-1,t,result);
+                    count++;
+                }
+            }
+            if(count == 0) break;
+        }
+        return result;
+
+    }
+    //int[] a= new int[]{1,4,7,6,2,5,3}
+    static void swap(int a , int b, int[] arr){
+        int tmp = 0;
+        tmp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = tmp;
     }
 }
