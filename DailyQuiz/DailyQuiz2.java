@@ -1,13 +1,11 @@
-package CodeStates.Section2.DailyQuiz;
+package CodeStates.DailyQuiz;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 public class DailyQuiz2 {
     public static void main(String[] args) {
         DailyQuiz2 q = new DailyQuiz2();
-        int[] a= new int[]{1,4,7,6,2,5,3};
-        System.out.println(Arrays.toString(q.bubbleSort(a)));
+        System.out.println(q.isSubsetOf(new int[]{1, 2, 3, 4, 5},new int[]{6,7} ));
 
 
     }
@@ -142,5 +140,20 @@ public class DailyQuiz2 {
         tmp = arr[a];
         arr[a] = arr[b];
         arr[b] = tmp;
+    }
+
+    public boolean isSubsetOf(int[] base, int[] sample) {
+
+        for (int j : sample) {
+            boolean bol = false;
+            for (int i : base) {
+                if (j == i) {
+                    bol = true;
+                    break;
+                }
+            }
+            if (!bol) return bol;
+        }
+        return true;
     }
 }

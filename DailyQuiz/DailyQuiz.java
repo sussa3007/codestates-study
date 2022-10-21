@@ -1,4 +1,4 @@
-package CodeStates.Section2.DailyQuiz;
+package CodeStates.DailyQuiz;
 
 import java.util.*;
 
