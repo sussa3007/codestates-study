@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class DailyQuiz2 {
     public static void main(String[] args) {
         DailyQuiz2 q = new DailyQuiz2();
-        System.out.println(q.isSubsetOf(new int[]{1, 2, 3, 4, 5},new int[]{6,7} ));
+        System.out.println(q.balancedBrackets("[[[{{{((()))}}}]]]"));
 
 
     }
@@ -155,5 +155,23 @@ public class DailyQuiz2 {
             if (!bol) return bol;
         }
         return true;
+    }
+
+    public boolean balancedBrackets(String str) {
+        // TODO:
+        if(str.equals("")) return true;
+        String s = str;
+
+        while(s.contains("()")||s.contains("{}")||s.contains("[]")){
+            if(s.contains("()")){
+                s = s.replace("()","");
+            } else if(s.contains("{}")){
+                s = s.replace("{}","");
+            } else if(s.contains("[]")){
+                s = s.replace("[]","");
+            }
+            if(s.equals("")) return true;
+        }
+        return false;
     }
 }
